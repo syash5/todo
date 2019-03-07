@@ -1,0 +1,64 @@
+{% extends 'base_layout.html' %}
+{% block content %}
+
+<table class="table table-striped table-bordered table-sm">
+    <thead class="thead-dark">
+    <tr>
+        <th>Task</th>
+        <th>Description</th>
+        <th>Cataegory</th>
+        <th>Task Completed</th>
+        <th>Due_on</th>
+        <th>Alarm Time</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+      {% if todotask %}
+    <table class="table table-success">
+      {% for todo in todotask %}
+        {% if todo.task_completed %}
+    <tr class="table table-warning">
+        <td >{{ todo.task }}</td>
+        <td>{{ todo.description }}</td>
+        <td>{{ todo.cataegory }}</td>
+        <td><a href="{% url 'uncross' todo.id %}">crossoff</a> </td>
+        <td>{{ todo.due_on }}</td>
+        <td>{{ todo.time }}</td>
+                <td>
+            <a href="/delete/{{ todo.id }}">Delete</a>
+        </td>
+          </tr>
+        {% else %}
+          <tr>
+        <td class="strike">{{ todo.task }}</td>
+        <td>{{ todo.description }}</td>
+        <td>{{ todo.cataegory }}</td>
+        <td><a href="{% url 'crossoff' todo.id %}">uncross</a> </td>
+        <td>{{ todo.due_on }}</td>
+        <td>{{ todo.time }}</td>
+                              <td>
+            <a href="/delete/{{ todo.id }}">Delete</a>
+        </td>
+          </tr>
+        {% endif %}
+
+      {% endfor %}
+    </table>
+  {% endif %}
+    </tbody>
+</table>
+<br>
+<br>
+<center><a href="/add_task" class="btn btn-primary">Add New Record</a></center>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+

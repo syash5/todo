@@ -1,0 +1,16 @@
+{% extends 'base_layout.html' %}
+{% load crispy_forms_tags %}
+
+
+
+{% block content %}
+    <div class="create-article">
+        <h2 class="md-text">{{ title }}</h2>
+        <form class="site-form" action="{% url 'add_task' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <input class="btn btn-primary btn-lg" type="submit" value="Create">
+        </form>
+    </div>
+
+{% endblock %}

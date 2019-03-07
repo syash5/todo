@@ -1,0 +1,34 @@
+{% extends 'base_layout.html' %}
+
+
+
+    {% block content %}
+
+<div class="container" style="color: black;">
+    <h2 class="md-text">Login</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+
+                    <label for="username">Email</label>
+                    <input type="text" class="form-control form-control-lg" name="username" id="username" required>
+            </div>
+            <div class="form-group>
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control form-control-lg" name="password" id="password" required>
+            </div>
+                <p style="color: red;">{{error}}</p>
+<div class="container">
+    <div class="g-recaptcha" data-sitekey="6LcURpAUAAAAADmU7rInw6jTXNWrZMJv6EKX_65Y"></div>
+</div>
+            <div>
+            <button type="submit" class="btn btn-primary btn-lg">Login</button>
+            </div>
+        </form>
+           </div>
+
+
+
+    {% endblock content %}
+
+

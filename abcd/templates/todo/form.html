@@ -1,0 +1,18 @@
+{% extends 'base_layout.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+<div class="container">
+<h2 class="md-text">{{ title }}</h2><hr>
+<form class="form-horizontal"  method="POST" action="" enctype='multipart/form-data'>
+    {% csrf_token %}
+    {{ form|crispy }}
+    <div>
+    <input class="btn btn-primary btn-lg" type="submit" value='Submit'>
+        </div>
+</form>
+    </div>
+{% endblock content %}
+
+

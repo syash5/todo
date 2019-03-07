@@ -1,0 +1,139 @@
+{% load staticfiles%}
+
+<html>
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+        <title>TO-DO</title>
+        <link rel="stylesheet" href="{% static 'styles.css' %}">
+        <link rel="icon" href="{% static 'logo.jpg' %}">
+
+
+
+
+
+        <link href='https://fonts.googleapis.com/css?family=Forum' rel='stylesheet'>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        <script src='https://www.google.com/recaptcha/api.js'></script>
+
+    </head>
+
+
+
+
+
+
+
+
+
+
+    <body>
+
+
+
+    <header>
+
+
+<div class="pos-f-t">
+  <div class="collapse" id="navbarToggleExternalContent">
+    <div class="bg-dark p-4">
+      <h4 class="text-white">TO DO LIST APPLICATION</h4>
+      <span class="text-muted">DJANGO POWERED</span>
+                             <li><a class="text-white" href="{% url 'show' %}">Home</a></li>
+                      {% if user.is_authenticated %}
+
+                     <li><a class="text-white" href="{% url 'user_logout' %}">Logout</a></li>
+
+                      {% else %}
+        <span class="text-muted">TO GET MAILS PLEASE LOGIN</span>
+                     <li><a class="text-white" href="{% url 'user_login' %}">Login</a></li>
+                    <li><a class="text-white" href="{% url 'register_view' %}">Signup</a></li>
+
+                     {% endif %}
+    </div>
+  </div>
+  <nav class="navbar navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent"
+      aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </nav>
+</div>
+         </header>
+
+
+
+
+
+
+
+        <div class="wrapper">
+            {% block content %}
+
+
+            {% endblock %}
+        </div>
+
+    </body>
+
+
+
+<footer class="section footer-classic context-dark bg-image" style="background: black;">
+        <div class="container">
+
+
+
+          <div class="row row-30">
+            <div class="col-md-4 col-xl-5">
+              <div class="pr-xl-4">
+                <p><svg width="90" height="48" xmlns="http://www.w3.org/2000/svg"><g fill="#FFF" fill-rule="nonzero"><path d="M16.093 18.49v12.459H12.03V29.4c-.828 1.223-2.02 1.923-3.723 1.923-2.725 0-4.306-1.698-4.306-4.82V18.49h4.063v7.117c0 1.647.632 2.322 1.898 2.322 1.338 0 2.068-.8 2.068-2.447v-6.992h4.063zM31.203 24.707c0 1.447-.243 2.622-.657 3.596-.852 1.873-2.482 2.996-4.72 2.996-1.581 0-2.798-.55-3.65-1.724v6.417h-4.064V18.49h3.966v1.498c.876-1.274 2.117-1.873 3.747-1.873 2.238 0 3.868 1.124 4.72 3.021.415.975.658 2.148.658 3.572zm-4.33 0c0-.874-.098-1.498-.292-1.948-.364-.824-1.095-1.249-2.092-1.249-1.533 0-2.36.998-2.36 2.846v.675c0 1.847.827 2.847 2.36 2.847.998 0 1.728-.425 2.092-1.25.194-.448.292-1.048.292-1.921zM51.667 18.49h4.04v1.123c.632-1.049 1.314-1.474 2.287-1.474 1.46 0 2.385.974 2.385 2.422 0 1.398-.95 2.422-2.336 2.422-.852 0-1.58-.45-1.897-1.124-.341.15-.414.35-.414 1.223v7.866h-4.064V18.489zM73.24 23.783v7.166h-4.063v-1.473c-.802 1.149-2.044 1.823-4.015 1.823-1.922 0-3.357-.7-3.966-2.098-.244-.5-.34-1.073-.34-1.773 0-.674.096-1.223.291-1.698.876-1.947 3.237-2.396 6.204-2.396h1.825v-.2c0-.75-.049-1.024-.195-1.349-.243-.548-.802-.824-1.679-.824-.948 0-1.484.25-1.727.8-.097.249-.121.424-.146.748h-4.136c.025-.674.146-1.248.365-1.747.803-1.823 2.871-2.647 5.596-2.647 2.944 0 4.672.8 5.475 2.597.341.824.512 1.847.512 3.07zm-4.282 3.42c.17-.349.22-.698.22-1.372v-.175H67.62c-1.168 0-2.117.124-2.385.774-.073.15-.121.325-.121.55 0 .225.024.399.121.599.244.55.876.749 1.607.749 1.094-.001 1.8-.4 2.116-1.124zM88 13.32V30.95h-3.966V29.45c-.875 1.248-2.092 1.848-3.747 1.848-2.238 0-3.868-1.1-4.72-2.996-.414-.974-.657-2.148-.657-3.596 0-1.424.243-2.597.658-3.571.827-1.898 2.481-3.02 4.72-3.02 1.58 0 2.774.548 3.65 1.722v-6.517H88zm-4.014 11.037c0-1.848-.828-2.846-2.36-2.846-.999 0-1.727.424-2.093 1.249-.194.449-.292 1.073-.292 1.948 0 .899.097 1.498.292 1.972.366.824 1.095 1.249 2.093 1.249 1.533 0 2.36-.999 2.36-2.846v-.726zM42.485 21.572v3.214h2.62l-.098.42c-.327 1.395-1.954 2.333-3.267 2.333-1.828 0-4.195-.903-4.195-5.209 0-3.564 1.524-5.268 3.854-5.268 1.274 0 2.256.309 2.847 1.22.245.4.473.947.497 1.403h4.65s.111-2.213-1.642-4.141l-.083-.087c-1.414-1.575-3.54-2.45-6.172-2.45-5.37 0-8.84 3.67-8.84 9.348 0 6.567 4.395 8.898 8.159 8.898 2.112 0 4.015-.647 5.172-1.922l.054 1.618h3.64v-9.377h-7.196z"></path></g></svg></p>
+                              <blockquote >
+              <p>
+               “Our goal is to significantly leverage technology to transform the way education is delivered in the digital age. We have a world class team that is commited to provide the most engaging online learning experience to students.”
+             </p>
+             <cite>
+              - Ronnie Screwvala
+            </cite>
+                    </blockquote>
+
+                <!-- Rights-->
+                <p class="rights"><span>©  </span><span class="copyright-year">2019</span><span> </span><span>ABC</span><span>. </span><span>All Rights Reserved.</span></p>
+              </div>
+            </div>
+            <div class="col-md-4">
+
+            </div>
+            <div class="col-md-4 col-xl-3">
+              <h5>Links</h5>
+              <ul class="nav-list">
+            <li><a href="{% url 'show' %}">APP</a></li>
+            <li><a href="{% url 'graphql' %}">Graphql Api</a></li>
+            <li><a href="/api">Rest Api With Django Rest Framework</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="row no-gutters social-container">
+          <div class="col"><a class="social-inner" href="https://www.facebook.com/upGradGlobal/"><span class="icon mdi mdi-facebook"></span><span>Facebook</span></a></div>
+            <div class="col"><a class="social-inner" href="https://twitter.com/UpGrad_Edu"><span class="icon mdi mdi-twitter"></span><span>twitter</span></a></div>
+          <div class="col"><a class="social-inner" href="#"><span class="icon mdi mdi-instagram"></span><span>instagram</span></a></div>
+
+        </div>
+      </footer>
+
+
+
+
+
+</html>
