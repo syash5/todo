@@ -9,6 +9,7 @@ from django.conf import settings
 import requests
 from django_cron import CronJobBase, Schedule
 from django.contrib.auth.decorators import login_required
+from abcde.tasks import Alert
 
 # Create your views here.
 
@@ -113,29 +114,37 @@ def uncross(request, id):
     return HttpResponseRedirect(reverse('show'))
 
 
+def mail(request):
+    if request.user.is_authenticated:
+        user = request.user
+        email = user.email
+        if datetime.datetime.now() == Todo.time:
+            gmail
+            smtp
+            subject = 'ALARM'
+            from_email = settings.EMAIL_HOST_USER
+            to_email = ['email':email]
+            contact_message = "Your Task is Pending"
+            send_mail(subject, contact_message, from_email, [to_email], fail_silently=True)
+
+        else:
+            Alert.delay()
+    else:
+        return HttpResponseRedirect(reverse('login'))
 
 
 
-class MyCronJob(CronJobBase):
-    RUN_EVERY_MINS = 120 # every 2 hours
 
-    schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
-    code = 'my_app.my_cron_job'    # a unique code
 
-    def do(self):
-        pass    # do your thing here
 
-# def mail(request):
-#     if Todo.time == Todo.time:
-#         gmail
-#         smtp
-#         subject = 'ALARM'
-#         from_email = settings.EMAIL_HOST_USER
-#         to_email = ['']
-#         contact_message = "Your Task is Pending"
-#         send_mail(subject, contact_message, from_email, [to_email], fail_silently=True)
+
+# class MyCronJob(CronJobBase):
+#     RUN_EVERY_MINS = 120 # every 2 hours
 #
-#     else:
+#     schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
+#     code = 'my_app.my_cron_job'    # a unique code
 #
+#     def do(self):
+#         pass    # do your thing here
 #
-#
+

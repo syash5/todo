@@ -41,9 +41,30 @@ INSTALLED_APPS = [
     'crispy_forms',
     'graphene_django',
      'django_cron',
+    'djcelery',
     'api',
     'abcd',
 ]
+
+import djcelery
+djcelery.setup_loader()
+
+BROKER_HOST = "localhost"
+BROKER_PORT = 5672
+BROKER_USER = "guest"
+BROKER_PASSWORD ="guest"
+BROKER_VHOST = "/"
+
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+
+CELERY_ALWAYS_EAGER = False
+
+
 
 AUTH_USER_MODEL = 'abcd.UserProfile'
 
